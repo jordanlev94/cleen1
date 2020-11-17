@@ -8,6 +8,18 @@ import Header from '../src/components/Header/Header'
 import ProductScreen from '../src/components/Product/ProductScreen'
 import Login from './pages/Login/login';
 
+
+const initialState = {user: {}};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'setData':
+      return {};
+    default:
+      throw new Error();
+  }
+}
+
 function App() {
   return (
     
@@ -21,7 +33,7 @@ function App() {
           <Route path='/' exact component={Home} />
           <Route path='/reports' component={Reports} />
           <Route path='/products' component={Products} />
-          <Route path='/reports' component={Login} />
+          <Route path='/login' component={Login} />
           <Route path="/product/:id"component ={ProductScreen}/>
           
 
