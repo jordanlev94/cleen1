@@ -1,5 +1,4 @@
 
-import res from '../src/images/20.jpg';
 
 export default  {
     products:[
@@ -75,11 +74,41 @@ export default  {
         numReviews: 10 ,
     },
     {
-        _id: '8',
-        name: 'Nike chaussure 8',
+        _id: '23',
+        name: 'Nike chaussure 23',
         category: 'Chaussures',
-        image: {res},
-        prix: 10,
+        image: "./images/23.jpg",
+        prix: 1500,
+        marque: ' Nike ',
+        rating: 5,
+        numReviews: 10 ,
+    },
+    {
+        _id: '24',
+        name: 'Nike chaussure 24',
+        category: 'Chaussures',
+        image: "./images/24.jpg",
+        prix: 1500,
+        marque: ' Nike ',
+        rating: 5,
+        numReviews: 10 ,
+    },
+    {
+        _id: '25',
+        name: 'Nike chaussure 25',
+        category: 'Chaussures',
+        image: "./images/25.jpg",
+        prix: 1500,
+        marque: ' Nike ',
+        rating: 5,
+        numReviews: 10 ,
+    },
+    {
+        _id: '26',
+        name: 'Nike chaussure 26',
+        category: 'Chaussures',
+        image: "./images/26.jpg",
+        prix: 1500,
         marque: ' Nike ',
         rating: 5,
         numReviews: 10 ,

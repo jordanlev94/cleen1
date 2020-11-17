@@ -5,5 +5,16 @@ background-color: var(--bg);
 display: flex;
 justify-content: space-between;
 
+
 }
 
+.i18icon{
+    padding-top: 10px;
+
+position: relative;
+        font-size: 3rem;
+        background: none;
+      cursor: pointer;
+      background-color: var(--bg);
+      position: static;
+}

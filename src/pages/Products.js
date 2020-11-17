@@ -20,7 +20,8 @@ function Home() {
       <div className='product-marque'> {product.marque}</div>
         <div className="product-prix"><b> {product.prix} $</b></div>
         <div className="product-rating">{product.rating} ÉTOILES ({product.numReviews}) </div>
-        <br/></div>
+        <br/>
+        </div>
     </li> )
         
     }

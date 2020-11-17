@@ -3,6 +3,7 @@ import { ReactComponent as NotifIcon } from '../icons/bell.svg';
 import { ReactComponent as MessengerIcon } from '../icons/messenger.svg';
 import { ReactComponent as FlecheIcon } from '../icons/caret.svg';
 import { ReactComponent as PanierIcon} from '../icons/panier.svg';
+import { ReactComponent as WorldIcon} from '../icons/world-grid.svg';
 // import { ReactComponent as CogIcon } from '../icons/cog.svg';
 // import { ReactComponent as ChevronIcon } from '../icons/chevron.svg';
 // import { ReactComponent as ArrowIcon } from '../icons/arrow.svg';
@@ -39,8 +40,9 @@ function Navbar2() {
 <Navbar3>
     
    <div className='rightt'>
+     
     <NavItem icon={<PanierIcon/>}/>
-       <NavItem icon={<NotifIcon/>}/>
+       
        <NavItem icon={<MessengerIcon/>}/>
 
        <NavItem icon={<FlecheIcon/>}>

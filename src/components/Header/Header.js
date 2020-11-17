@@ -14,6 +14,7 @@ const header = () => {
             <div className='Sidebar ' >
                             <Sidebar/>
             </div>
+            
             <div className='logo '>
 <Link to='/'> <img className='Logo' src='../../images/Logo1.png' height='60px'/></Link>
             </div>
