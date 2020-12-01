@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { SidebarData } from './SidebarData';
 import './Sidebar.css';
 import { IconContext } from 'react-icons';
+import * as IoIcons from 'react-icons/io';
+import {Context} from '../../ContextProvider'
 
 function Sidebar() {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
+  
+  const context = useContext(Context)
+
 
   return (
     <>
@@ -28,7 +33,7 @@ function Sidebar() {
             </li>
             {SidebarData.map((item, index) => {
               return (
-                <li key={index} className={item.cName}>
+                <li key={index} className='nav-text'>
                   <Link to={item.path}>
                     {item.icon}
                     <span>{item.title}</span>
@@ -36,6 +41,17 @@ function Sidebar() {
                 </li>
               );
             })}
+            {context.uid ? <li className='nav-text'>
+                  <div onClick={() => context.setUid('')}>
+                    <IoIcons.IoMdHelpCircle />
+                    <span>{'Logout'}</span>
+                  </div>
+                </li> : <li className='nav-text'>
+                  <Link to={'/login'}>
+                  <IoIcons.IoMdHelpCircle />
+                    <span>{'Login'}</span>
+                  </Link>
+                </li>}
           </ul>
         </nav>
       </IconContext.Provider>

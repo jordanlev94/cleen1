@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useRouteMatch, useParams, useLocation, Redirect} from 'react-router-dom'
-import {signIn, signUp} from '../../firebase'
+import {signInWithGoogle, signUp} from '../../firebase'
+import {Context} from '../../ContextProvider'
+
 const request = require('request');
-
-
 
 
 function useQuery() {
@@ -56,6 +56,8 @@ function Login() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
+  const context = useContext(Context)
+
   // let { path, url } = useRouteMatch();
   // let { id, name } = useParams();
 
@@ -83,15 +85,16 @@ function Login() {
   const onSubmit = async (event) => {
     event.preventDefault()
     console.log(mail, password)
-    const userCredentials = await signIn(mail, password)
+    const userCredentials = await signInWithGoogle(mail, password)
     if (!userCredentials) {
       setError(true)
     } else {
       setLoggedIn(true)
-      const id = userCredentials.user.uid
+      const uid = userCredentials.user.uid
 
-
-      const data = await selectRudyCB(id)
+      localStorage.setItem("uid", uid)
+      context.setUid(uid)
+      const data = await selectRudyCB(uid)
       const datajson = JSON.parse(data).Table[0]
 
       console.log('data', datajson)
@@ -117,9 +120,16 @@ function Login() {
     console.log('userCredentials', userCredentials)
   }
 
-  // if (loggedIn) {
-  //   return <Redirect to='/' />
-  // }
+  const onLogout= (event) => {
+    event.preventDefault()
+    localStorage.removeItem('uid')
+    context.setUid('')
+    setLoggedIn(false)
+  }
+
+  if (loggedIn) {
+    return <Redirect to='/products' />
+  }
 
 
   return (
@@ -153,12 +163,19 @@ function Login() {
                 </button>
 
                 <button
+                  onClick={onLogout}
+                  disabled={password === ""}
+                >
+                  Logout
+                </button>
+
+                <button
                   onClick={onSignup}
                   disabled={password === ""}
                 >
                   Sign Up
                 </button>
-
+{context.uid}
           </form>
     </div>
   );

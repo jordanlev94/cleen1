@@ -7,7 +7,8 @@ import Products from './pages/Products';
 import Header from '../src/components/Header/Header'
 import ProductScreen from '../src/components/Product/ProductScreen'
 import Login from './pages/Login/login';
-
+import Cart from './pages/Cart';
+import ContextProvider from './ContextProvider'
 
 const initialState = {user: {}};
 
@@ -25,19 +26,20 @@ function App() {
     
     
       <Router>
+        <ContextProvider>
+          <Header/>
         
+          <Switch>
+            <Route path='/' exact component={Home} />
+            <Route path='/reports' component={Reports} />
+            <Route path='/products' component={Products} />
+            <Route path='/login' component={Login} />
+            <Route path="/product/:id"component ={ProductScreen}/>
+            <Route path="/cart"component ={Cart}/>
+            
 
-        <Header/>
-       
-        <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='/reports' component={Reports} />
-          <Route path='/products' component={Products} />
-          <Route path='/login' component={Login} />
-          <Route path="/product/:id"component ={ProductScreen}/>
-          
-
-        </Switch>
+          </Switch>
+        </ContextProvider>
       </Router>
     
   );
