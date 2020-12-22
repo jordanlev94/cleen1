@@ -7,39 +7,22 @@ import Products from './pages/Products';
 import Header from '../src/components/Header/Header'
 import ProductScreen from '../src/components/Product/ProductScreen'
 import Login from './pages/Login/login';
-
-
-const initialState = {user: {}};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'setData':
-      return {};
-    default:
-      throw new Error();
-  }
-}
+import ContextProvider from './components/ContextProvider'
 
 function App() {
   return (
-    
-    
       <Router>
-        
-
-        <Header/>
-       
-        <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='/reports' component={Reports} />
-          <Route path='/products' component={Products} />
-          <Route path='/login' component={Login} />
-          <Route path="/product/:id"component ={ProductScreen}/>
-          
-
-        </Switch>
+        <ContextProvider>
+          <Header/>
+          <Switch>
+            <Route path='/' exact component={Home} />
+            <Route path='/reports' component={Reports} />
+            <Route path='/products' component={Products} />
+            <Route path='/login' component={Login} />
+            <Route path="/product/:id"component ={ProductScreen}/>
+          </Switch>
+        </ContextProvider>
       </Router>
-    
   );
 }
 

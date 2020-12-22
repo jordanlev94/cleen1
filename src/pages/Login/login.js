@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useRouteMatch, useParams, useLocation, Redirect} from 'react-router-dom'
 import {signIn, signUp} from '../../firebase'
+import {Context} from '../../components/ContextProvider'
+
 const request = require('request');
-
-
 
 
 function useQuery() {
@@ -14,7 +14,7 @@ function selectRudyCB(id) {
   return new Promise(function(resolve, reject) {
    request({
       method:'POST',
-      url:'https://art-online-co-aeea04.appdrag.site/api/FSelectRudy', 
+      url:'https://art-online-co-aeea04.appdrag.site/api/FSelectRudy',
       form: {"userId" : id}
    }, function(err,httpResponse,body) {
      if ( err != null ) {
@@ -33,7 +33,7 @@ function signUpAppDrag(id) {
   return new Promise(function(resolve, reject) {
     request({
        method:'POST',
-       url:'https://art-online-co-aeea04.appdrag.site/api/createRudyInsert', 
+       url:'https://art-online-co-aeea04.appdrag.site/api/createRudyInsert',
        form: {"userId" : id,"name" : "asdfghj","ville" : "ashdod","age" : "22"}
     }, function(err,httpResponse,body) {
       if ( err != null ) {
@@ -43,7 +43,7 @@ function signUpAppDrag(id) {
        resolve(body);
       }
     });
-   });  
+   });
  }
 
 function Login() {
@@ -59,6 +59,9 @@ function Login() {
   // let { path, url } = useRouteMatch();
   // let { id, name } = useParams();
 
+  const context = useContext(Context)
+
+
   const foo = () => {}
 
   useEffect(() => {
@@ -73,7 +76,7 @@ function Login() {
     const value = event.target.value
     setMail(value)
   }
-  
+
   const onChangePassword = (event) => {
     const value = event.target.value
     setPassword(value)
@@ -89,7 +92,7 @@ function Login() {
     } else {
       setLoggedIn(true)
       const id = userCredentials.user.uid
-
+      context.setUserId(id)
 
       const data = await selectRudyCB(id)
       const datajson = JSON.parse(data).Table[0]
@@ -117,9 +120,9 @@ function Login() {
     console.log('userCredentials', userCredentials)
   }
 
-  // if (loggedIn) {
-  //   return <Redirect to='/' />
-  // }
+  if (loggedIn) {
+    return <Redirect to='/' />
+  }
 
 
   return (
@@ -158,7 +161,7 @@ function Login() {
                 >
                   Sign Up
                 </button>
-
+                {context.userId}
           </form>
     </div>
   );
